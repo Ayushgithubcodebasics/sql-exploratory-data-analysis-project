@@ -32,7 +32,7 @@ SQL Analytics Framework
 - **Product Performance Dashboard**: Revenue and sales performance metrics
 - **KPI Calculations**: Recency, Average Order Value, Monthly Spend Analytics
 
-## Technical Skills Demonstrated
+## Technical Skills
 
 **SQL Techniques:**
 - Complex JOINs and CTEs (Common Table Expressions)
@@ -102,7 +102,6 @@ ORDER BY total_spending DESC;
 
 ## Business Impact
 
-This project demonstrates the ability to:
 - Transform raw transactional data into strategic insights
 - Identify revenue opportunities and customer patterns
 - Create scalable reporting infrastructure
