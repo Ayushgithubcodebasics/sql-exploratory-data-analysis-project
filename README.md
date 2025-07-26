@@ -1,19 +1,19 @@
-# 📊 Advanced SQL Analytics Project
+# Advanced SQL Analytics Project
 
 A comprehensive data analytics project demonstrating advanced SQL techniques for business intelligence and data exploration. This project transforms raw sales data into actionable insights through systematic analysis, covering everything from basic exploration to complex reporting.
 
 **Key Achievement**: Built end-to-end analytical framework processing 60K+ transactions across 18K+ customers and 295 products.
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```
-📦 SQL Analytics Framework
+SQL Analytics Framework
 ├──Data Warehousing Layer
 ├──Exploratory Data Analysis (EDA)
 └──Advanced Analytics & Reporting
 ```
 
-## 🚀 Core Capabilities
+## Core Capabilities
 
 ### **Data Exploration & Profiling**
 - Database structure analysis using information schema
@@ -32,7 +32,7 @@ A comprehensive data analytics project demonstrating advanced SQL techniques for
 - **Product Performance Dashboard**: Revenue and sales performance metrics
 - **KPI Calculations**: Recency, Average Order Value, Monthly Spend Analytics
 
-## 🔧 Technical Skills Demonstrated
+## Technical Skills Demonstrated
 
 **SQL Techniques:**
 - Complex JOINs and CTEs (Common Table Expressions)
@@ -47,7 +47,7 @@ A comprehensive data analytics project demonstrating advanced SQL techniques for
 - Fact and dimension table relationships
 - View creation for reporting layers
 
-## 📊 Key Business Insights Delivered
+## Key Business Insights Delivered
 
 ### Customer Analytics
 - **18,083** active customers analyzed
@@ -67,14 +67,14 @@ A comprehensive data analytics project demonstrating advanced SQL techniques for
 - **4-year** historical trend analysis (2010-2014)
 - **Seasonal Patterns**: December peak sales identification
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Database**: SQL Server
 - **Query Language**: T-SQL
 - **Development**: SQL Server Management Studio (SSMS)
 - **Version Control**: Git
 
-## 📈 Sample Query Showcase
+## Sample Query Showcase
 
 **Customer Segmentation with Performance Metrics:**
 ```sql
@@ -100,7 +100,7 @@ FROM customer_metrics
 ORDER BY total_spending DESC;
 ```
 
-## 🎯 Business Impact
+## Business Impact
 
 This project demonstrates the ability to:
 - Transform raw transactional data into strategic insights
@@ -108,7 +108,7 @@ This project demonstrates the ability to:
 - Create scalable reporting infrastructure
 - Support data-driven decision making
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Setup Database:**
    ```sql
@@ -126,7 +126,7 @@ This project demonstrates the ability to:
    SELECT * FROM gold.report_products;
    ```
 
-## 📊 Results & Deliverables
+## Results & Deliverables
 
 - **2 Comprehensive Reports**: Customer 360° and Product Performance views
 - **15+ KPIs**: Including recency, AOV, customer lifetime value
