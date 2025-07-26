@@ -1,175 +1,134 @@
-SQL-Based Data Analysis for Business Insights
-Introduction
-This project provides a comprehensive demonstration of data analysis using SQL to extract actionable insights from a sample dataset. It follows a structured approach, starting from basic data exploration and profiling to advanced analytics techniques like performance analysis, customer segmentation, and time-series analysis. The ultimate goal is to create detailed, insightful reports that can inform strategic business decisions.
-This repository is designed for anyone looking to understand the practical application of SQL in data analytics, from aspiring data analysts to seasoned professionals seeking to refine their analytical frameworks.
-Table of Contents
-Project Overview
-Key Features
-Technologies Used
-Getting Started
-Prerequisites
-Installation
-Project Structure
-1. Database Exploration
-2. Exploratory Data Analysis (EDA)
-3. Advanced Analytics
-Final Reports
-Customer 360° Report
-Product Performance Report
-Contact
-Project Overview
-The project is divided into three main phases:
-Data Warehousing & Setup: Preparing the data and database environment for analysis. This involves creating the database schema and importing the necessary data.
-Exploratory Data Analysis (EDA): Understanding the fundamental characteristics of the dataset by identifying dimensions and measures, exploring unique values, and analyzing date ranges.
-Advanced Analytics: Applying sophisticated SQL techniques to answer specific business questions. This includes analyzing trends, comparing performance, segmenting data, and creating comprehensive reports.
-Key Features
-Data Profiling: Initial analysis to understand the structure, content, and quality of the data.
-Dimension & Measure Identification: A core framework for structuring analysis by categorizing data into descriptive attributes (dimensions) and quantifiable metrics (measures).
-Time-Series Analysis: Tracking key metrics over time to identify trends, seasonality, and growth patterns.
-Performance Analysis: Comparing key performance indicators (KPIs) against benchmarks like averages or previous periods (Year-over-Year).
-Customer & Product Segmentation: Grouping customers and products into meaningful segments based on behavior and value.
-Comprehensive Reporting: Consolidating all analyses into final, easy-to-consume views (Customer 360° Report and Product Performance Report).
-Technologies Used
-Database: Microsoft SQL Server
-IDE: SQL Server Management Studio (SSMS)
-Language: Transact-SQL (T-SQL)
-Getting Started
-Follow these instructions to get the project up and running on your local machine.
-Prerequisites
-Microsoft SQL Server (any edition, including Express)
-SQL Server Management Studio (SSMS)
-Installation
-There are three ways to set up the database for this project:
-Method 1: Using the Initialization Script (Recommended)
-Download the project files and locate the init_database.sql script.
-Open the script in SSMS.
-Important: Modify the file paths within the script to match the location of the CSV data files on your local machine.
-Ensure you are connected to the master database in SSMS.
-Execute the entire script. This will create the DataWarehouseAnalytics database, the schema, tables, and import all the data.
-Method 2: Manual Flat File Import
-Create a new database in SSMS (e.g., DataWarehouseAnalytics).
-Right-click on the new database, navigate to Tasks -> Import Flat File....
-Follow the wizard to import each of the three CSV files (customers, products, sales) from the Gold tables folder.
-Ensure you allow NULL values during the import process to avoid errors.
-Method 3: Restoring from Backup
-Locate the DataWarehouseAnalytics.bak file.
-Copy this file to the Backup folder of your SQL Server instance. (e.g., C:\Program Files\Microsoft SQL Server\...\MSSQL\Backup\)
-In SSMS, right-click on Databases and select Restore Database....
-Select Device and locate the .bak file.
-Click OK to restore the database.
-Project Structure
-The analysis is structured into a logical progression of steps, each building upon the last.
-1. Database Exploration
-The first step is to understand the database schema.
--- List all tables and views in the database
-SELECT
-    TABLE_CATALOG,
-    TABLE_SCHEMA,
-    TABLE_NAME,
-    TABLE_TYPE
-FROM INFORMATION_SCHEMA.TABLES;
+# 📊 Advanced SQL Analytics Project
 
--- Explore the columns of a specific table (e.g., DimCustomer)
-SELECT
-    COLUMN_NAME,
-    DATA_TYPE,
-    ORDINAL_POSITION
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_NAME = 'DimCustomer';
+A comprehensive data analytics project demonstrating advanced SQL techniques for business intelligence and data exploration. This project transforms raw sales data into actionable insights through systematic analysis, covering everything from basic exploration to complex reporting.
 
+**Key Achievement**: Built end-to-end analytical framework processing 60K+ transactions across 18K+ customers and 295 products.
 
-2. Exploratory Data Analysis (EDA)
-This phase involves basic analysis to get a feel for the data.
-Dimension Exploration: Identifying unique values in dimensional columns.
--- Find all unique product categories and subcategories
-SELECT DISTINCT
-    Category,
-    Subcategory
-FROM DimProduct
-ORDER BY 1, 2;
+## 🏗️ Project Architecture
 
+```
+📦 SQL Analytics Framework
+├──Data Warehousing Layer
+├──Exploratory Data Analysis (EDA)
+└──Advanced Analytics & Reporting
+```
 
-Date Exploration: Understanding the time span of the data.
--- Find the first and last order dates
-SELECT
-    MIN(OrderDate) AS FirstOrderDate,
-    MAX(OrderDate) AS LastOrderDate
-FROM FactSales;
+## 🚀 Core Capabilities
 
+### **Data Exploration & Profiling**
+- Database structure analysis using information schema
+- Dimension vs. Measure classification framework
+- Data quality assessment and boundary analysis
 
-Measure Exploration: Calculating high-level aggregate metrics.
--- Calculate key business metrics
-SELECT 'Total Revenue' AS MeasureName, SUM(SalesAmount) AS MeasureValue FROM FactSales
-UNION ALL
-SELECT 'Total Orders', COUNT(DISTINCT OrderNumber) FROM FactSales
-UNION ALL
-SELECT 'Total Customers', COUNT(DISTINCT CustomerKey) FROM FactSales;
+### **Advanced Analytics Techniques**
+- **Trend Analysis**: Time-series performance tracking
+- **Cumulative Analysis**: Running totals and moving averages using window functions
+- **Performance Comparison**: Year-over-year and period-over-period analysis
+- **Customer Segmentation**: VIP/Regular/New customer classification
+- **Revenue Distribution**: Part-to-whole analysis with percentage contributions
 
+### **Business Intelligence Reporting**
+- **Customer 360° Report**: Complete customer lifecycle analysis
+- **Product Performance Dashboard**: Revenue and sales performance metrics
+- **KPI Calculations**: Recency, Average Order Value, Monthly Spend Analytics
 
-3. Advanced Analytics
-Diving deeper to uncover more complex insights.
-Change Over Time: Analyzing sales performance year over year.
--- Yearly sales performance
-SELECT
-    YEAR(OrderDate) AS OrderYear,
-    SUM(SalesAmount) AS TotalSales,
-    COUNT(DISTINCT CustomerKey) AS TotalCustomers
-FROM FactSales
-WHERE OrderDate IS NOT NULL
-GROUP BY YEAR(OrderDate)
-ORDER BY OrderYear;
+## 🔧 Technical Skills Demonstrated
 
+**SQL Techniques:**
+- Complex JOINs and CTEs (Common Table Expressions)
+- Advanced Window Functions (`ROW_NUMBER()`, `LAG()`, `LEAD()`)
+- Aggregate Functions with custom business logic
+- Date Functions and time-based calculations
+- CASE WHEN statements for data segmentation
+- Subqueries and derived tables
 
-Cumulative Analysis: Calculating running totals to track growth.
--- Calculate running total of sales over time
-WITH MonthlySales AS (
-    SELECT
-        EOMONTH(OrderDate) AS MonthEnd,
-        SUM(SalesAmount) AS TotalSales
-    FROM FactSales
-    GROUP BY EOMONTH(OrderDate)
+**Database Design:**
+- Star schema implementation
+- Fact and dimension table relationships
+- View creation for reporting layers
+
+## 📊 Key Business Insights Delivered
+
+### Customer Analytics
+- **18,083** active customers analyzed
+- **Customer Segmentation**: 1,655 VIP, 2,332 Regular, 14,096 New customers
+- **Geographic Distribution**: 6-country customer base analysis
+- **Lifecycle Metrics**: Customer lifespan and recency analysis
+
+### Product Performance  
+- **295** products across 4 main categories analyzed
+- **Revenue Concentration**: Bikes category dominates with 69% of total sales
+- **Performance Segmentation**: High/Medium/Low performer classification
+- **Price Analysis**: $486 average selling price identified
+
+### Sales Intelligence
+- **$29.4M** total revenue processed
+- **60K+** items sold across **27K** unique orders
+- **4-year** historical trend analysis (2010-2014)
+- **Seasonal Patterns**: December peak sales identification
+
+## 🛠️ Technologies Used
+
+- **Database**: SQL Server
+- **Query Language**: T-SQL
+- **Development**: SQL Server Management Studio (SSMS)
+- **Version Control**: Git
+
+## 📈 Sample Query Showcase
+
+**Customer Segmentation with Performance Metrics:**
+```sql
+WITH customer_metrics AS (
+    SELECT 
+        c.customer_key,
+        CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+        SUM(s.sales_amount) AS total_spending,
+        DATEDIFF(MONTH, MIN(s.order_date), MAX(s.order_date)) AS lifespan,
+        COUNT(DISTINCT s.order_number) AS total_orders
+    FROM fact_sales s
+    LEFT JOIN dim_customers c ON s.customer_key = c.customer_key
+    WHERE s.order_date IS NOT NULL
+    GROUP BY c.customer_key, c.first_name, c.last_name
 )
-SELECT
-    MonthEnd,
-    TotalSales,
-    SUM(TotalSales) OVER (ORDER BY MonthEnd) AS RunningTotalSales
-FROM MonthlySales;
+SELECT *,
+    CASE 
+        WHEN lifespan >= 12 AND total_spending > 5000 THEN 'VIP'
+        WHEN lifespan >= 12 AND total_spending <= 5000 THEN 'Regular'
+        ELSE 'New'
+    END AS customer_segment
+FROM customer_metrics
+ORDER BY total_spending DESC;
+```
 
+## 🎯 Business Impact
 
-Performance Analysis: Comparing yearly product sales to the average and the previous year.
--- Year-over-Year sales growth for a product
-SELECT
-    ProductName,
-    OrderYear,
-    CurrentSales,
-    LAG(CurrentSales, 1, 0) OVER (PARTITION BY ProductName ORDER BY OrderYear) AS PreviousYearSales
-FROM YearlyProductSales_CTE;
+This project demonstrates the ability to:
+- Transform raw transactional data into strategic insights
+- Identify revenue opportunities and customer patterns
+- Create scalable reporting infrastructure
+- Support data-driven decision making
 
+## 🚀 Quick Start
 
-Data Segmentation: Grouping customers based on their spending behavior.
--- Segment customers into VIP, Regular, and New
-CASE
-    WHEN LifespanInMonths >= 12 AND TotalSpending > 5000 THEN 'VIP'
-    WHEN LifespanInMonths >= 12 AND TotalSpending <= 5000 THEN 'Regular'
-    ELSE 'New'
-END AS CustomerSegment
+1. **Setup Database:**
+   ```sql
+   -- Run init_database.sql to create schema and load data
+   ```
 
+2. **Explore Data:**
+   ```sql
+   -- Execute exploratory_analysis.sql for initial insights
+   ```
 
-Final Reports
-The culmination of this project is two comprehensive views that provide a 360-degree perspective on customers and products.
-Customer 360° Report
-This report consolidates key customer metrics, including:
-Demographics: Name, age, and derived age groups.
-Aggregations: Total orders, total sales, total quantity, and number of unique products purchased.
-Behavioral Segments: VIP, Regular, and New customer segments.
-KPIs: Recency (months since last order), average order value, and average monthly spend.
-Product Performance Report
-This report provides deep insights into product performance, including:
-Details: Product name, category, and subcategory.
-Aggregations: Total orders, total sales, total quantity, and number of unique customers.
-Performance Segments: High, Medium, and Low performers based on revenue.
-KPIs: Average selling price, average order revenue, and average monthly revenue.
-These reports are created as Views in the database (report_customers and report_products) for easy access by business intelligence tools or other analysts.
-Contact
-Your Name - [Your Email] - [Link to your LinkedIn profile]
-Project Link: https://github.com/your_username/your_repository
+3. **Generate Reports:**
+   ```sql
+   SELECT * FROM gold.report_customers;
+   SELECT * FROM gold.report_products;
+   ```
+
+## 📊 Results & Deliverables
+
+- **2 Comprehensive Reports**: Customer 360° and Product Performance views
+- **15+ KPIs**: Including recency, AOV, customer lifetime value
+- **Multiple Segmentation Models**: Customer behavior and product performance
+- **Trend Analysis**: Multi-year business performance insights
